@@ -19,10 +19,10 @@ const AddRestaurant = () => {
             <select className="custom-select my-1 mr-sm-2">
               <option disabled>Price Range</option>
               <option value="1">₹100-1000</option>
-              <option value="2">₹1000-2000</option>
-              <option value="3">₹2000-3000</option>
-              <option value="4">₹4000-5000</option>
-              <option value="5">₹6000-10000</option>
+              <option value="2">₹1001-2000</option>
+              <option value="3">₹2001-3000</option>
+              <option value="4">₹3001-5000</option>
+              <option value="5">₹5001-10000</option>
             </select>
           </div>
           <button className="btn btn-primary">Add</button>
