@@ -14,6 +14,32 @@ const RestaurantList = () => {
             <th scope="col">Delete</th>
           </tr>
         </thead>
+        <tbody>
+          <tr>
+            <td>Mcdonalds</td>
+            <td>Delhi</td>
+            <td>1001-2000</td>
+            <td>Rating</td>
+            <td>
+              <button className="btn btn-warning">Update</button>
+            </td>
+            <td>
+              <button className="btn btn-danger">Delete</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Burger King</td>
+            <td>Pune</td>
+            <td>2001-3000</td>
+            <td>Rating</td>
+            <td>
+              <button className="btn btn-warning">Update</button>
+            </td>
+            <td>
+              <button className="btn btn-danger">Delete</button>
+            </td>
+          </tr>
+        </tbody>
       </table>
     </div>
   );
