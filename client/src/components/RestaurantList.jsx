@@ -30,7 +30,7 @@ const RestaurantList = () => {
           <tr>
             <td>Burger King</td>
             <td>Pune</td>
-            <td>2001-3000</td>
+            <td>3001-4000</td>
             <td>Rating</td>
             <td>
               <button className="btn btn-warning">Update</button>
