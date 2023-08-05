@@ -1,9 +1,28 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import RestaurantFinder from "../apis/RestaurantFinder";
+import { RestaurantsContext } from "../context/RestaurantsContext";
 
 const AddRestaurant = () => {
+  const { addRestaurants } = useContext(RestaurantsContext);
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
   const [priceRange, setPriceRange] = useState("Price Range");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await RestaurantFinder.post("/", {
+        name: name,
+        location: location,
+        price_range: priceRange,
+      });
+      addRestaurants(response.data.data.restaurant);
+      console.log(response);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="mb-4">
       <form action="">
@@ -33,11 +52,11 @@ const AddRestaurant = () => {
               className="custom-select my-1 mr-sm-2"
             >
               <option disabled>Price Range</option>
-              <option value="1">₹100-1000</option>
-              <option value="2">₹1001-2000</option>
-              <option value="3">₹2001-3000</option>
-              <option value="4">₹3001-5000</option>
-              <option value="5">₹5001-10000</option>
+              <option value="100">₹100-1000</option>
+              <option value="200">₹1001-2000</option>
+              <option value="300">₹2001-3000</option>
+              <option value="400">₹3001-5000</option>
+              <option value="500">₹5001-10000</option>
             </select>
           </div>
           <button
