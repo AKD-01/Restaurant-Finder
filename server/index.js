@@ -1,11 +1,13 @@
 require("dotenv").config();
 const express = require("express");
-const db = require("./db")
+const cors = require("cors");
+const db = require("./db");
 //const morgan = require("morgan");
 const app = express();
 
 //app.use(morgan("dev"));
 
+app.use(cors());
 app.use(express.json());
 
 //Get all restaurants
