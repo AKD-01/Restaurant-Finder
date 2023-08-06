@@ -9,13 +9,17 @@ const RestaurantDetailPage = () => {
 
   useEffect(() => {
     const fetchData = async() => {
-      const response = await RestaurantFinder.get(`/${id}`);
-      setSelectedRestaurant(response.data.data.restaurant);
+      try {
+        const response = await RestaurantFinder.get(`/${id}`);
+        setSelectedRestaurant(response.data.data.restaurant);
+      } catch ( err) {
+        console.log(err);
+      } 
     }
     fetchData();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  return <div>Detail Page</div>;
+  return <div>{selectedRestaurant && selectedRestaurant.name}</div>;
 };
 
 export default RestaurantDetailPage;
