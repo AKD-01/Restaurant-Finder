@@ -14,8 +14,22 @@ const RestaurantList = (props) => {
       }
     };
     fetchData();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const handleDelete = async (id) => {
+    try {
+      const response = await RestaurantFinder.delete(`/${id}`);
+      setRestaurants(
+        restaurants.filter((restaurant) => {
+          return restaurant.id !== id;
+        })
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="list-group">
       <table className="table table-hover table-dark">
@@ -30,22 +44,28 @@ const RestaurantList = (props) => {
           </tr>
         </thead>
         <tbody>
-          {restaurants && restaurants.map((restaurant) => {
-            return (
-              <tr key={restaurant.id}>
-              <td>{restaurant.name}</td>
-              <td>{restaurant.location}</td>
-              <td>{restaurant.price_range}</td>
-              <td>reviews</td>
-              <td>
-                <button className="btn btn-warning">Update</button>
-              </td>
-              <td>
-                <button className="btn btn-danger">Delete</button>
-              </td>
-            </tr>
-            );
-          })}
+          {restaurants &&
+            restaurants.map((restaurant) => {
+              return (
+                <tr key={restaurant.id}>
+                  <td>{restaurant.name}</td>
+                  <td>{restaurant.location}</td>
+                  <td>{restaurant.price_range}</td>
+                  <td>reviews</td>
+                  <td>
+                    <button className="btn btn-warning">Update</button>
+                  </td>
+                  <td>
+                    <button
+                      onClick={() => handleDelete(restaurant.id)}
+                      className="btn btn-danger"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
           {/*<tr>
             <td>Mcdonalds</td>
             <td>Delhi</td>
