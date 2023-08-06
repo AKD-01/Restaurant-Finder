@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import RestaurantFinder from "../apis/RestaurantFinder";
 
 const UpdateRestaurant = (props) => {
   const { id } = useParams();
+  let navigate = useNavigate();
 
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
@@ -17,8 +18,23 @@ const UpdateRestaurant = (props) => {
       setPriceRange(response.data.data.restaurant.price_range);
     };
     fetchData();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const updatedRestaurant = await RestaurantFinder.put(`/${id}`, {
+        name: name,
+        location: location,
+        price_range: priceRange,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+    navigate("/");
+  };
 
   return (
     <div>
@@ -56,7 +72,13 @@ const UpdateRestaurant = (props) => {
           />
         </div>
 
-        <button className="btn btn-primary">Submit</button>
+        <button
+          type="submit"
+          onClick={handleSubmit}
+          className="btn btn-primary"
+        >
+          Submit
+        </button>
       </form>
     </div>
   );
