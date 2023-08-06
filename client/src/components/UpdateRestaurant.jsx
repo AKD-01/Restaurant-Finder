@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import RestaurantFinder from "../apis/RestaurantFinder";
 
 const UpdateRestaurant = (props) => {
   const { id } = useParams();
@@ -8,9 +9,20 @@ const UpdateRestaurant = (props) => {
   const [location, setLocation] = useState("");
   const [priceRange, setPriceRange] = useState("500");
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await RestaurantFinder.get(`/${id}`);
+      setName(response.data.data.restaurant.name);
+      setLocation(response.data.data.restaurant.location);
+      setPriceRange(response.data.data.restaurant.price_range);
+    };
+    fetchData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[]);
+
   return (
     <div>
-      <from action="">
+      <form action="">
         <div className="form-group">
           <label htmlFor="name">Name</label>
           <input
@@ -45,7 +57,7 @@ const UpdateRestaurant = (props) => {
         </div>
 
         <button className="btn btn-primary">Submit</button>
-      </from>
+      </form>
     </div>
   );
 };
