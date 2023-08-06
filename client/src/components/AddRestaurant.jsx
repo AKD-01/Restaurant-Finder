@@ -17,7 +17,9 @@ const AddRestaurant = () => {
         price_range: priceRange,
       });
       addRestaurants(response.data.data.restaurant);
-      console.log(response);
+      setName("");
+      setLocation("");
+      setPriceRange("Price Range");
     } catch (err) {
       console.log(err);
     }
@@ -52,11 +54,11 @@ const AddRestaurant = () => {
               className="custom-select my-1 mr-sm-2"
             >
               <option disabled>Price Range</option>
-              <option value="100">₹100-1000</option>
-              <option value="200">₹1001-2000</option>
-              <option value="300">₹2001-3000</option>
-              <option value="400">₹3001-5000</option>
-              <option value="500">₹5001-10000</option>
+              <option value="1000">1000</option>
+              <option value="3000">3000</option>
+              <option value="5000">5000</option>
+              <option value="8000">8000</option>
+              <option value="10000">10000</option>
             </select>
           </div>
           <button
