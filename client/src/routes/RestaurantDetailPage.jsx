@@ -19,6 +19,7 @@ const RestaurantDetailPage = () => {
     fetchData();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   return <div>{selectedRestaurant && selectedRestaurant.name}</div>;
 };
 
