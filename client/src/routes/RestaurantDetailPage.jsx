@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import RestaurantFinder from "../apis/RestaurantFinder";
 import { RestaurantsContext } from "../context/RestaurantsContext";
 
-
 const RestaurantDetailPage = () => {
   const { id } = useParams();
   const {selectedRestaurant, setSelectedRestaurant} = useContext(RestaurantsContext);
