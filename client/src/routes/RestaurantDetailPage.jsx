@@ -21,7 +21,7 @@ const RestaurantDetailPage = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return <div>{selectedRestaurant && <StarRating rating={4} />}</div>;
+  return <div>{selectedRestaurant && <StarRating rating={2.3} />}</div>;
 };
 
 export default RestaurantDetailPage;
