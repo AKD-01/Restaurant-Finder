@@ -4,7 +4,6 @@ const AddReview = () => {
   const [name, setName] = useState("");
   const [reviewText, setReviewText] = useState("");
   const [rating, setRating] = useState("Rating");
-
   return (
     <div className="mb-2">
       <form action="">
