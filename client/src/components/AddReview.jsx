@@ -1,10 +1,32 @@
 import React, { useState } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import RestaurantFinder from "../apis/RestaurantFinder";
 
 const AddReview = () => {
+  const { id } = useParams();
+  const location = useLocation();
+  let navigate = useNavigate();
+
   const [name, setName] = useState("");
   const [reviewText, setReviewText] = useState("");
   const [rating, setRating] = useState("Rating");
-  
+
+  const handleSubmitReview = async (e) => {
+    e.preventDefault();
+    try {
+      // eslint-disable-next-line no-unused-vars
+      const response = await RestaurantFinder.post(`/${id}/addReview`, {
+        name,
+        review: reviewText,
+        rating,
+      });
+      navigate("/");
+      navigate(location.pathname);
+    } catch (err) {
+      console.log(err);
+    } 
+  };
+
   return (
     <div className="mb-2">
       <form action="">
@@ -46,7 +68,13 @@ const AddReview = () => {
             className="form-control"
           ></textarea>
         </div>
-        <button className="btn btn-primary">Submit</button>
+        <button
+          type="submit"
+          onClick={handleSubmitReview}
+          className="btn btn-primary"
+        >
+          Submit
+        </button>
       </form>
     </div>
   );
