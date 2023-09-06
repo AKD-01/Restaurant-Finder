@@ -4,9 +4,7 @@ import RestaurantFinder from "../apis/RestaurantFinder";
 
 const AddReview = () => {
   const { id } = useParams();
-  const location = useLocation();
-  let navigate = useNavigate();
-
+  
   const [name, setName] = useState("");
   const [reviewText, setReviewText] = useState("");
   const [rating, setRating] = useState("Rating");
@@ -20,8 +18,7 @@ const AddReview = () => {
         review: reviewText,
         rating,
       });
-      navigate("/");
-      navigate(location.pathname);
+      window.location.reload()
     } catch (err) {
       console.log(err);
     } 
